@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiket Serbu Jilid XVII</title>
+    <style>
+        :root {
+            --primary: #ff4757;
+            --secondary: #2f3542;
+            --accent: #1e90ff;
+            --light: #f1f2f6;
+            --dark: #2f3542;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .event-info {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .event-detail {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .detail-item {
+            background: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .ticket-types {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .ticket-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 300px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .ticket-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            color: var(--secondary);
+        }
+
+        .select-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .select-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .order-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+            max-width: 600px;
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .buy-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background-color: var(--secondary);
+        }
+
+        .payment-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            text-align: center;
+            border-left: 4px solid var(--accent);
+        }
+
+        .ticket-confirmation {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 2rem auto;
+            max-width: 600px;
+            text-align: center;
+            display: none;
+        }
+
+        .ticket-code {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1rem 0;
+            padding: 1rem;
+            border: 2px dashed var(--primary);
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            background: var(--dark);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .ticket-types {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .banner {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .banner img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Serbu Jilid XVII</h1>
+            <p>Acara spektakuler tahun ini yang tidak boleh Anda lewatkan!</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="banner">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0d0614df-f3cc-4787-a8c3-2be76fb69148.png" alt="Poster acara Serbu Jilid XVII dengan gaya urban mengunakan warna merah dan hitam dengan desain grafis modern" />
+        </div>
+
+        <div class="event-info">
+            <h2>Event Information</h2>
+            <div class="event-detail">
+                <span class="detail-item">📅 15 Desember 2023</span>
+                <span class="detail-item">⏰ 19:00 WIB</span>
+                <span class="detail-item">📍 Jakarta Convention Center</span>
+            </div>
+        </div>
+
+        <div class="ticket-types">
+            <div class="ticket-card" id="bundling">
+                <h3>Tiket Bundling</h3>
+                <p>Termasuk merchandise eksklusif dan foto bersama artist</p>
+                <div class="price">Rp 100.000</div>
+                <button class="select-btn" onclick="selectTicket('bundling')">Pilih Tiket</button>
+            </div>
+            <div class="ticket-card" id="reguler">
+                <h3>Tiket Reguler</h3>
+                <p>Harga standar untuk masuk acara</p>
+                <div class="price">Rp 10.000</div>
+                <button class="select-btn" onclick="selectTicket('reguler')">Pilih Tiket</button>
+            </div>
+        </div>
+
+        <form id="orderForm" class="order-form">
+            <input type="hidden" id="ticketType" name="ticketType">
+            <div class="form-group">
+                <label for="name">Nama Lengkap</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Nomor WhatsApp</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Jumlah Tiket</label>
+                <input type="number" id="quantity" name="quantity" min="1" max="10" required>
+            </div>
+            <div class="payment-info">
+                <h3>Pembayaran melalui DANA</h3>
+                <p>Transfer ke nomor: 082279695537</p>
+                <p>Setelah transfer, upload bukti pembayaran dibawah ini:</p>
+                <input type="file" id="paymentProof" name="paymentProof" accept="image/*" required>
+            </div>
+            <button type="button" class="buy-btn" onclick="processOrder()">Proses Pembayaran</button>
+        </form>
+
+        <div id="ticketConfirmation" class="ticket-confirmation">
+            <h2>Pemesanan Tiket Berhasil!</h2>
+            <p>Terima kasih telah membeli tiket Serbu Jilid XVII.</p>
+            <div class="ticket-code">
+                <span id="ticketCode"></span>
+            </div>
+            <p>Simpan kode tiket ini dan tunjukkan saat registrasi di lokasi acara.</p>
+            <p>Detail tiket dapat dilihat di halaman ini dan telah dikirim ke WhatsApp Anda.</p>
+            <a id="whatsappBtn" class="buy-btn" style="margin-top:20px;display:inline-block;width:auto;padding:10px 20px;">
+                Buka WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Serbu Jilid XVII. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function selectTicket(type) {
+            document.getElementById('ticketType').value = type;
+            document.getElementById('orderForm').style.display = 'block';
+            
+            // Scroll ke form pemesanan
+            document.getElementById('orderForm').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        function processOrder() {
+            // Validasi form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const quantity = document.getElementById('quantity').value;
+            const paymentProof = document.getElementById('paymentProof').value;
+            const ticketType = document.getElementById('ticketType').value;
+            
+            if (!name || !email || !phone || !quantity || !paymentProof) {
+                alert('Harap lengkapi semua data sebelum melanjutkan!');
+                return;
+            }
+
+            // Generate kode tiket acak
+            const ticketCode = generateTicketCode();
+            document.getElementById('ticketCode').textContent = ticketCode;
+            
+            // Send WhatsApp notification
+            const whatsappMessage = `Halo ${name}, tiket Serbu Jilid XVII Anda:\n\n` +
+                                  `Kode Tiket: ${ticketCode}\n` +
+                                  `Tipe: ${ticketType}\n` +
+                                  `Jumlah: ${quantity}\n\n` +
+                                  `Lanjutkan pembayaran ke DANA 082279695537 lalu kirim bukti pembayaran.\n` +
+                                  `Terima kasih!`;
+            const whatsappUrl = `https://wa.me/${phone.replace(/^0/, '62')}?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            // Tampilkan konfirmasi dan sembunyikan form
+            document.getElementById('orderForm').style.display = 'none';
+            document.getElementById('ticketConfirmation').style.display = 'block';
+            
+            // Scroll ke konfirmasi dan open WhatsApp
+            document.getElementById('ticketConfirmation').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function generateTicketCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let result = '';
+            for (let i = 0; i < 8; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return 'SBJX-' + result;
+        }
+
+        // Update WhatsApp button href after generating ticket
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('whatsappBtn')?.addEventListener('click', function() {
+                const phone = document.getElementById('phone').value;
+                const ticketCode = document.getElementById('ticketCode').textContent;
+                const ticketType = document.getElementById('ticketType').value;
+                const name = document.getElementById('name').value;
+                const quantity = document.getElementById('quantity').value;
+                
+                const message = `Konfirmasi Tiket Serbu Jilid XVII\n\n` +
+                               `Nama: ${name}\n` +
+                               `Kode Tiket: ${ticketCode}\n` +
+                               `Tipe: ${ticketType}\n` +
+                               `Jumlah: ${quantity}\n\n` +
+                               `Saya sudah transfer, berikut buktinya:`;
+                               
+                window.open(`https://wa.me/6282279695537?text=${encodeURIComponent(message)}`, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
+
